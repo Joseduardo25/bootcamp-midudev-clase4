@@ -22,9 +22,26 @@ const notes = [
 ]
 
 function App() {
+
+  if(!notes || notes.length === 0) {
+    return 'no hay nada que mostrar'
+  }
+
   return (
     <div className="App">
-      {notes.map((note) => note.content)}
+      {
+        notes.map((note) => {
+          return (
+            <div>
+              <p>
+                {note.content}
+                <small><time>{note.date}</time></small>
+              </p>
+              
+            </div>
+          )
+        })
+      }
     </div>
   );
 }
