@@ -23,26 +23,24 @@ const notes = [
 
 function App() {
 
-  if(!notes || notes.length === 0) {
-    return 'no hay nada que mostrar'
+  const Note = ({note}) => {
+    return(
+      <li key={note.id}>
+      <p>
+        {note.content}
+        <small><time>{note.date}</time></small>
+      </p>
+      
+    </li>
+    )
   }
 
   return (
-    <div className="App">
+    <ul className="App">
       {
-        notes.map((note) => {
-          return (
-            <div>
-              <p>
-                {note.content}
-                <small><time>{note.date}</time></small>
-              </p>
-              
-            </div>
-          )
-        })
+        notes.map(note => <Note note={note}/>)
       }
-    </div>
+    </ul>
   );
 }
 
