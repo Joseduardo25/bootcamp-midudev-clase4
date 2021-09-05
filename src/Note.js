@@ -3,6 +3,7 @@ const Note = ( {content, date} ) => {
     <li>
       <p>
         {content}
+        <br/>
         <small>
           <time>{date}</time>
         </small>
@@ -10,5 +11,6 @@ const Note = ( {content, date} ) => {
     </li>
   )
 }
+
 
 export default Note
