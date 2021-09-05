@@ -1,4 +1,4 @@
-import './App.css';
+import Note from './Note.js'
 
 const notes = [
   {
@@ -23,25 +23,12 @@ const notes = [
 
 function App() {
 
-  const Note = ({content, date}) => {
-    return(
-      <li>
-      <p>
-        {content}
-        <small>
-          <time>{date}</time>
-        </small>
-      </p>
-    </li>
-    )
-  }
-
   return (
-    <ul className="App">
+    <ol className="App">
       {
-        notes.map(note => <Note key={note.id} content={note.content} date={note.date}/>)
+        notes.map(note => <Note key={note.id} content={note.content} date={note.date} />)
       }
-    </ul>
+    </ol>
   );
 }
 
