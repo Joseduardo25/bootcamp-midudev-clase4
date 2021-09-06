@@ -11,15 +11,15 @@ function App(props) {
     setNewNote(event.target.value)
   }
 
-  const handleClick = (event) => {
-    console.log('crear nota')
+  const handleSubmit = (event) => {
+    event.preventDefault()
     const noteToAddToState = {
       id: notes.length + 1,
       content: newNote,
       date: new Date().toISOString(),
       important: Math.random() < 0.5
     }
-    setNotes([...notes, noteToAddToState])
+    setNotes(notes.concat(noteToAddToState))
     setNewNote('')
   }
   
@@ -31,12 +31,12 @@ function App(props) {
           notes.map(note => <Note key={note.id} content={note.content} date={note.date} />)
         }
       </ol>
-      <div>
+      <form onSubmit={handleSubmit}>
           <input onChange={handleChange} type='text' value={newNote}/>
-          <button type='submit' onClick={handleClick}>
+          <button type='submit' >
             Crear Nota
           </button>
-        </div>
+      </form>
     </div>
   );
 }
