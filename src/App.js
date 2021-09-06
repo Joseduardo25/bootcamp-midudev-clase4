@@ -6,6 +6,7 @@ function App(props) {
 
   const [notes, setNotes] = useState(props.notes)
   const [newNote, setNewNote] = useState('')
+  const [showAll, setShowAll] = useState(true)
 
   const handleChange = (event) => {
     setNewNote(event.target.value)
@@ -19,16 +20,27 @@ function App(props) {
       date: new Date().toISOString(),
       important: Math.random() < 0.5
     }
-    setNotes(notes.concat(noteToAddToState))
+    setNotes(prevNotes => prevNotes.concat(noteToAddToState))
     setNewNote('')
   }
   
+  const handleShowAll = () => {
+    setShowAll(() => !showAll)
+  }
+
   return (
     <div>
       <h1>Notes</h1>
+      <button onClick={handleShowAll}>{showAll ? 'Show all important' : 'Show all'}</button>
       <ol className="App">
         {
-          notes.map(note => <Note key={note.id} content={note.content} date={note.date} />)
+          notes
+          .filter((note) => {
+            if (showAll === true)
+            return note
+            return note.important === true
+          })
+          .map(note => <Note key={note.id} content={note.content} date={note.date} />)
         }
       </ol>
       <form onSubmit={handleSubmit}>
