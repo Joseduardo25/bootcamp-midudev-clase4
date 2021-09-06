@@ -19,7 +19,7 @@ function App(props) {
       date: new Date().toISOString(),
       important: Math.random() < 0.5
     }
-    setNotes(notes.concat(noteToAddToState))
+    setNotes([...notes, noteToAddToState])
     setNewNote('')
   }
   
